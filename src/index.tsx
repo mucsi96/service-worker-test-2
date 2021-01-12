@@ -13,6 +13,13 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
+// Source: https://felixgerschau.com/how-to-communicate-with-service-workers/
+navigator.serviceWorker.onmessage = (event) => {
+  if (event.data && event.data.type === "REQUEST") {
+    console.log(event.data.request);
+  }
+};
+
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
