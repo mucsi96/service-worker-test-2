@@ -16,7 +16,12 @@ ReactDOM.render(
 // Source: https://felixgerschau.com/how-to-communicate-with-service-workers/
 navigator.serviceWorker.onmessage = (event) => {
   if (event.data && event.data.type === "REQUEST") {
+    const requestUrl = new URL(event.data.request.url);
     console.log(event.data.request);
+
+    if (requestUrl.pathname === "/hello") {
+      (event.source as any).postMessage({ hello: "word10" });
+    }
   }
 };
 
